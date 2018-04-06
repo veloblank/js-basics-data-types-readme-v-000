@@ -96,6 +96,7 @@ Six of the seven JavaScript data types — everything except `object` — are *
 
 ## Interactions between data types
 Every programming language has its own rules governing the ways in which we can operate on data of a given type. For example, it's rather uncontroversial that numbers can be subtracted from other numbers...
+
 ```js
 3 - 2
 //=> 1
@@ -106,13 +107,15 @@ Every programming language has its own rules governing the ways in which we can 
 //=> "Hello, world!"
 ```
 
-Some programming languages are incredibly strict about how data of different types can interact, and they will refuse to compile a program that uses types incorrectly. Other languages are more forgiving. For example, instead of throwing an error when an integer (`3`) is added to a floating-point number (`0.14159`), Ruby will simply convert the integer into a floating-point number and correctly calculate the sum:
+Some programming languages, such as Python, are strict about how data of different types can interact, and they will refuse to compile a program that uses types incorrectly. Other languages, such as Ruby, will attempt to handle the interaction by converting one of the data types so all data is of the same type. For example, instead of throwing an error when an integer (`3`) is added to a floating-point number (`0.14159`), Ruby will simply convert the integer into a floating-point number and correctly calculate the sum:
+
 ```ruby
 3 + 0.14159
 #=> 3.14159
 ```
 
-JavaScript is a little _too_ nice. No matter what weird combination of types you give it, JavaScript won't throw an error and will return _something_ (though that _something_ might make no sense at all). This runs the gamut from the halfway-defensible...
+JavaScript is a little _too_ nice when handling conflicting data types. No matter what weird combination of types you give it, JavaScript won't throw an error and will return _something_ (though that _something_ might make no sense at all). This runs the gamut from the halfway-defensible...
+
 ```js
 "High " + 5 + "!"
 //=> "High 5!"
