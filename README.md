@@ -251,4 +251,6 @@ seven different types: numbers, strings, booleans, symbols, objects, `null`, and
 
 - [MDN — JavaScript data types and data structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
 - [Destroy All Software — Types](https://www.destroyallsoftware.com/compendium/types?share_key=baf6b67369843fa2)
-- [Destroy All Software — Wat](https://www.destroyallsoftware.com/talks/wat)
+- [Destroy All Software — Wat][Wat]
+
+[Wat]: https://www.destroyallsoftware.com/talks/wat
