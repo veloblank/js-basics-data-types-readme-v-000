@@ -269,9 +269,7 @@ null ** 2; // null to the power of 2
 undefined ** null; // undefined to the power of null
 //=> 1
 
-{
-}
-+{}; // empty object plus empty object
+{}+{}; // empty object plus empty object
 //=> "[object Object][object Object]" <-- That's a string!
 ```
 
