@@ -18,31 +18,32 @@ behavior: _abstraction_. It's looking at several _concrete_ examples and
 finding some sort of "ideal" that the _concrete_ examples all have in common
 and using that as a rule to find something that doesn't _quite_ fit.
 
-Doing this is one of the most profound problems in philosophy and human development.
-No less an authority than Aristotle wrote a [whole book][] on it and how humans do
-it is one of the essential reasons why he [differs][] from his teacher, Plato.
+Doing this is one of the most profound problems in philosophy and human
+development. No less an authority than Aristotle wrote a [whole book][] on it
+and how humans do it (one of the essential reasons why he [differs][] from his
+teacher, Plato).
 
 Who knew JavaScript would lead us to ancient Greece as well as "Sesame Street?"
 
-In JavaScript _concrete_ instances of data can be categorized into _abstract_ names
-called "data type" or, more simply, "type."
+In JavaScript, _concrete_ instances of data can be categorized into _abstract_
+names called "data type" or, more simply, "type."
 
 ## Objectives
 
-1. Define a data type
-2. Demonstrate basic type checking with the `typeof` operator
-3. Identify JavaScript's seven basic data types
-4. Describe interactions between data of various types in JavaScript
+1.  Define a data type
+2.  Demonstrate basic type checking with the `typeof` operator
+3.  Identify JavaScript's seven basic data types
+4.  Describe interactions between data of various types in JavaScript
 
 ## Define a Data Type
 
-***Everything is JavaScript is data*** except:
+**_Everything is JavaScript is data_** except:
 
-1. **Operators**: `+`, `!`, `<=`, etc.
-2. **Reserved Words** (`function`, `for`,`debugger`, etc.)
+1.  **Operators**: `+`, `!`, `<=`, etc.
+2.  **Reserved Words** (`function`, `for`,`debugger`, etc.)
 
-Every piece of data falls into one of JavaScript's seven data types: numbers, strings,
-booleans, symbols, objects, `null`, and `undefined`.
+Every piece of data falls into one of JavaScript's seven data types: numbers,
+strings, booleans, symbols, objects, `null`, and `undefined`.
 
 ## Demonstrate Basic Type Checking with the `typeof` Operator
 
@@ -51,40 +52,40 @@ what data types we're dealing with. `typeof` accepts one argument, the piece of
 data that we'd like to know the _type of_.
 
 > **CAREFUL** `typeof` is an operator, just like `+` or `!`. We get used to operators
-being only one character, but JavaScript (and many other languages) have operators
-with more than character. As such, **we don't need parentheses with `typeof`**. That
-said, JavaScript also supports `()` after `typeof`, but it's commonly not done.
+> being only one character, but JavaScript (and many other languages) have operators
+> with more than character. As such, **we don't need parentheses with `typeof`**. That
+> said, JavaScript also supports `()` after `typeof`, but it's commonly not done.
 
 ## Identify JavaScript's Seven Basic Data Types
 
 ### Numbers
 
-Some programming languages divide numbers up into integers,
-decimals, doubles, floats, and so on. They do this so that they can have higher
-_precision_ in their calculations. In a banking application or airplane wing 
-engineering application we want our interest rate or the curve of the wing to be
-***as accurate as possible***. For good reason: we want to make sure we get paid
-or have a safe plane! When JavaScript was created, this level of precision was not
-thought to be a thing that would be needed, so JavaScript only has a single, all-
-encompassing `number` type:
+Some programming languages divide numbers up into integers, decimals, doubles,
+floats, and so on. They do this so that they can have higher _precision_ in
+their calculations. In a banking application or airplane wing engineering
+application we want our interest rate or the curve of the wing to be **_as
+accurate as possible_**. For good reason: we want to make sure we get paid or
+have a safe plane! When JavaScript was created, this level of precision was not
+thought to be a thing that would be needed, so JavaScript only has a single,
+all- encompassing `number` type:
 
 ```js
-typeof 42
+typeof 42;
 //=> "number"
 
-typeof 3.141592653589793
+typeof 3.141592653589793;
 //=> "number"
 
-typeof 5e-324
+typeof 5e-324;
 //=> "number"
 
-typeof -Infinity
+typeof -Infinity;
 //=> "number"
 ```
 
 > **Think About This** As JavaScript has become a language for the back-end as well
-as the front-end, it's imprecision around numbers keep it from entering many 
-banking or engineering applications where precision is vital.
+> as the front-end, it's imprecision around numbers keep it from entering many
+> banking or engineering applications where precision is vital.
 
 ### Strings
 
@@ -93,20 +94,20 @@ pair of `'single quotes'`, `"double quotes"`, or `` `backticks` `` with zero or
 more characters in between:
 
 ```js
-typeof "I am a string."
+typeof 'I am a string.';
 //=> "string"
 
-typeof 'Me too!'
+typeof 'Me too!';
 //=> "string"
 
-typeof `Me three!`
+typeof `Me three!`;
 //=> "string"
 ```
 
 Even empty strings are strings:
 
 ```js
-typeof ""
+typeof '';
 //=> "string"
 ```
 
@@ -116,17 +117,17 @@ A boolean can only be one of two possible values: `true` or `false`. Booleans
 play a big role in if statements and looping in JavaScript.
 
 ```js
-typeof true
+typeof true;
 //=> "boolean"
 
-typeof false
+typeof false;
 //=> "boolean"
 ```
 
 ### Objects
 
-JavaScript `Object`s are a collection of properties bounded by curly braces (`{
-}`), similar to a hash in Ruby or a dictionary in Python.
+JavaScript `Object`s are a collection of properties bounded by curly braces
+(`{ }`), similar to a hash in Ruby or a dictionary in Python.
 
 The properties can point to values of any data type — even other objects:
 
@@ -146,9 +147,15 @@ typeof {}
 ```
 
 From JavaScript's perspective, what we call "arrays" are just special-cases of
-an `"object"` where the keys are all `number`s. So while JavaScript has 
-`Array`s like `let dogs = ["Byron", "Cubby", "Boo Radley"]`, JavaScript
+an `"object"` where the keys are all `number`s. So while JavaScript has
+`Array`s like `let dogs = ["Byron", "Cubby", "Boo Radley", "Luca"]`, JavaScript
 really thinks that `typeof dogs` is `"object"`.
+
+```js
+let dogs = ['Byron', 'Cubby', 'Boo Radley', 'Luca'];
+typeof dogs;
+//=> "object"
+```
 
 ### `null`
 
@@ -158,7 +165,7 @@ it return `null` in the event of an error. Confusingly, the `typeof` operator
 returns `"object"` when called with `null`:
 
 ```js
-typeof null
+typeof null;
 //=> "object"
 ```
 
@@ -167,11 +174,21 @@ typeof null
 The bane of many JS developers, `undefined` is a bit of a misnomer. Instead of
 'not defined,' it actually means something more like 'not yet assigned a value.'
 
-
 ```js
-typeof undefined
+typeof undefined;
 //=> "undefined"
+
+let unassignedVariable;
+typeof unassignedVariable;
+//=> "undefined"
+
+unassignedVariable = '';
+typeof unassignedVariable;
+//=> "string"
 ```
+
+Any variable declared but not defined will be `undefined` until a value is
+assigned.
 
 ### Symbols
 
@@ -192,13 +209,14 @@ operate on data of a given type. For example, it's rather uncontroversial that
 `number`s can be subtracted from other `number`s...
 
 ```js
-3 - 2
+3 - 2;
 //=> 1
 ```
+
 ...and that strings can be added to other strings:
 
 ```js
-"Hello" + ', ' + `world!`
+'Hello' + ', ' + `world!`;
 //=> "Hello, world!"
 ```
 
@@ -226,31 +244,34 @@ Ruby throws errors when some stranger cases come up
 TypeError: no implicit conversion of Fixnum into String
 ```
 
-That seems pretty reasonable: I don't know how to make the `Integer` `1138` a `String`
-without being directly told that you want it to be a `String` (same as Python's
-rule).
+That seems pretty reasonable: I don't know how to make the `Integer`, `1138`, a
+`String` without being directly told that you want it to be a `String` (same as
+Python's rule).
 
 That seems like a good baseline. However, JavaScript is a little _too_ nice when
-handling conflicting data types. ***No matter what weird combination of types you give it, JavaScript won't throw an
-error and will return _something_ (though that _something_ might make no sense
-at all)***.
+handling conflicting data types. **No matter what weird combination of types
+you give it, JavaScript won't throw an error and will return _something_ (though
+that _something_ might make no sense at all)**.
 
-Sometimes this makes _some_ sense
+Sometimes this makes _some_ sense:
 
 ```js
-"High " + 5 + "!"
+'High ' + 5 + '!';
 //=> "High 5!"
 ```
-...to the [comical][Wat]:
+
+...to the [comical][wat]:
 
 ```js
-null ** 2 // null to the power of 2
+null ** 2; // null to the power of 2
 //=> 0
 
-undefined ** null // undefined to the power of null
+undefined ** null; // undefined to the power of null
 //=> 1
 
-{} + {} // empty object plus empty object
+{
+}
++{}; // empty object plus empty object
 //=> "[object Object][object Object]" <-- That's a string!
 ```
 
@@ -263,22 +284,22 @@ type issues that surprise both novice and expert programmers alike.
 Try to follow along with what's happening here:
 
 ```js
-1 + 2 + 3 + 4 + 5
+1 + 2 + 3 + 4 + 5;
 //=> 15
 
-"1" + 2 + 3 + 4 + 5
+'1' + 2 + 3 + 4 + 5;
 //=> "12345"
 
-1 + "2" + 3 + 4 + 5
+1 + '2' + 3 + 4 + 5;
 //=> "12345"
 
-1 + 2 + "3" + 4 + 5
+1 + 2 + '3' + 4 + 5;
 //=> "3345"
 
-1 + 2 + 3 + "4" + 5
+1 + 2 + 3 + '4' + 5;
 //=> "645"
 
-1 + 2 + 3 + 4 + "5"
+1 + 2 + 3 + 4 + '5';
 //=> "105"
 ```
 
@@ -306,8 +327,8 @@ seven different types: numbers, strings, booleans, symbols, objects, `null`, and
 
 - [MDN — JavaScript data types and data structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
 - [Destroy All Software — Types](https://www.destroyallsoftware.com/compendium/types?share_key=baf6b67369843fa2) – A cross-language examination of type in various language
-- [Destroy All Software — Wat][Wat] – A beloved ***and hilarious*** talk in which JavaScript's friendliness when mixing types is discussed at a fever pace – with awesome slides
+- [Destroy All Software — Wat][wat] – A beloved **_and hilarious_** talk in which JavaScript's friendliness when mixing types is discussed at a fever pace – with awesome slides
 
-[Wat]: https://www.destroyallsoftware.com/talks/wat
+[wat]: https://www.destroyallsoftware.com/talks/wat
 [whole book]: https://plato.stanford.edu/entries/aristotle-categories/
 [differs]: https://www.diffen.com/difference/Aristotle_vs_Plato
