@@ -2,8 +2,30 @@
 
 ## Problem Statement
 
-JavaScript defines seven types of data, which means we need to know all of the
-rules of those types in order to manipulate data the way we want to.
+Did you ever hear this song from educational TV?
+
+```text
+One of these things is not like the others.
+One of these things doesn't belong.
+Can you tell which thing is not like the other by the time
+I finish this song?
+```
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rsRjQDrDnY8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+What this song is asking the young viewer to engage in is a pretty powerful
+behavior: _abstraction_. It's looking at several _concrete_ examples and
+finding some sort of "ideal" that the _concrete_ examples all have in common
+and using that as a rule to find something that doesn't _quite_ fit.
+
+Doing this is one of the most profound problems in philosophy and human development.
+No less an authority than Aristotle wrote a [whole book][] on it and how humans do
+it is one of the essential reasons why he [differs][] from his teacher, Plato.
+
+Who knew JavaScript would lead us to ancient Greece as well as "Sesame Street?"
+
+In JavaScript _concrete_ instances of data can be categorized into _abstract_ names
+called "data type" or, more simply, "type."
 
 ## Objectives
 
@@ -14,15 +36,12 @@ rules of those types in order to manipulate data the way we want to.
 
 ## Define a Data Type
 
-At the machine level, all data on a computer are bits — 1s and 0s. Humans, it
-turns out, have more trouble discerning between `1100011 1100001 1110100
-1110011` and `1100100 1101111 1100111 1110011` (cats and dogs) than our silicon
-friends. For more human-friendly representations of different pieces of
-information, we developed **data types**. JavaScript contains a number of
-operators (`+`, `!`, `<=`, etc.) and reserved words (`function`, `for`,
-`debugger`, etc.), which are reserved by the language for a specific purpose.
-(You'll see more on these later.) ***Everything else is data***. And every piece
-of data falls into one of JavaScript's seven data types: numbers, strings,
+***Everything is JavaScript is data*** except:
+
+1. **Operators**: `+`, `!`, `<=`, etc.
+2. **Reserved Words** (`function`, `for`,`debugger`, etc.)
+
+Every piece of data falls into one of JavaScript's seven data types: numbers, strings,
 booleans, symbols, objects, `null`, and `undefined`.
 
 ## Demonstrate Basic Type Checking with the `typeof` Operator
@@ -31,12 +50,22 @@ Throughout this lesson, we'll use the `typeof` operator to give us an idea of
 what data types we're dealing with. `typeof` accepts one argument, the piece of
 data that we'd like to know the _type of_.
 
+> **CAREFUL** `typeof` is an operator, just like `+` or `!`. We get used to operators
+being only one character, but JavaScript (and many other languages) have operators
+with more than character. As such, **we don't need parentheses with `typeof`**. That
+said, JavaScript also supports `()` after `typeof`, but it's commonly not done.
+
 ## Identify JavaScript's Seven Basic Data Types
 
 ### Numbers
 
-Unlike other programming languages that divide numbers up into integers,
-decimals, doubles, floats, and so on, JavaScript only has a single, all-
+Some programming languages divide numbers up into integers,
+decimals, doubles, floats, and so on. They do this so that they can have higher
+_precision_ in their calculations. In a banking application or airplane wing 
+engineering application we want our interest rate or the curve of the wing to be
+***as accurate as possible***. For good reason: we want to make sure we get paid
+or have a safe plane! When JavaScript was created, this level of precision was not
+thought to be a thing that would be needed, so JavaScript only has a single, all-
 encompassing `number` type:
 
 ```js
@@ -52,6 +81,10 @@ typeof 5e-324
 typeof -Infinity
 //=> "number"
 ```
+
+> **Think About This** As JavaScript has become a language for the back-end as well
+as the front-end, it's imprecision around numbers keep it from entering many 
+banking or engineering applications where precision is vital.
 
 ### Strings
 
@@ -80,7 +113,7 @@ typeof ""
 ### Booleans
 
 A boolean can only be one of two possible values: `true` or `false`. Booleans
-play a big role in logical control flows and looping in JavaScript.
+play a big role in if statements and looping in JavaScript.
 
 ```js
 typeof true
@@ -92,9 +125,10 @@ typeof false
 
 ### Objects
 
-JavaScript objects are a collection of properties bounded by curly braces (`{
-}`), similar to a hash in Ruby. The properties can point to values of any data
-type — even other objects:
+JavaScript `Object`s are a collection of properties bounded by curly braces (`{
+}`), similar to a hash in Ruby or a dictionary in Python.
+
+The properties can point to values of any data type — even other objects:
 
 ```js
 {
@@ -110,6 +144,11 @@ type — even other objects:
 typeof {}
 //=> "object"
 ```
+
+From JavaScript's perspective, what we call "arrays" are just special-cases of
+an `"object"` where the keys are all `number`s. So while JavaScript has 
+`Array`s like `let dogs = ["Byron", "Cubby", "Boo Radley"]`, JavaScript
+really thinks that `typeof dogs` is `"object"`.
 
 ### `null`
 
@@ -127,8 +166,7 @@ typeof null
 
 The bane of many JS developers, `undefined` is a bit of a misnomer. Instead of
 'not defined,' it actually means something more like 'not yet assigned a value.'
-We'll learn a lot more about `undefined` when we dive into variables and
-functions.
+
 
 ```js
 typeof undefined
@@ -151,7 +189,7 @@ Six of the seven JavaScript data types — everything except `object` — are
 
 Every programming language has its own rules governing the ways in which we can
 operate on data of a given type. For example, it's rather uncontroversial that
-numbers can be subtracted from other numbers...
+`number`s can be subtracted from other `number`s...
 
 ```js
 3 - 2
@@ -164,9 +202,13 @@ numbers can be subtracted from other numbers...
 //=> "Hello, world!"
 ```
 
+But what happens if you mix them?
+
 Some programming languages, such as Python, are strict about how data of
 different types can interact, and they will refuse to compile a program that
-uses types incorrectly. Other languages, such as Ruby, will attempt to handle
+blends types. Well, that's rather strict.
+
+Other languages, such as Ruby, will attempt to handle
 the interaction by converting one of the data types so all data is of the same
 type. For example, instead of throwing an error when an integer (`3`) is added
 to a floating-point number (`0.14159`), Ruby will simply convert the integer
@@ -177,10 +219,23 @@ into a floating-point number and correctly calculate the sum:
 #=> 3.14159
 ```
 
-JavaScript is a little _too_ nice when handling conflicting data types. No
-matter what weird combination of types you give it, JavaScript won't throw an
+Ruby throws errors when some stranger cases come up
+
+```ruby
+> "THX-" + 1138
+TypeError: no implicit conversion of Fixnum into String
+```
+
+That seems pretty reasonable: I don't know how to make the `Integer` `1138` a `String`
+without being directly told that you want it to be a `String` (same as Python's
+rule).
+
+That seems like a good baseline. However, JavaScript is a little _too_ nice when
+handling conflicting data types. ***No matter what weird combination of types you give it, JavaScript won't throw an
 error and will return _something_ (though that _something_ might make no sense
-at all). This runs the gamut from the halfway-defensible...
+at all)***.
+
+Sometimes this makes _some_ sense
 
 ```js
 "High " + 5 + "!"
@@ -203,7 +258,7 @@ Why JavaScript returns a string when we ask it to add two empty objects is
 anyone's guess, but its heart is in the right place. The language always tries
 to bend over backwards for its human masters, returning actionable data instead
 of throwing errors. However, JavaScript's eagerness occasionally results in data
-type issues that both novice and expert programmers have to keep an eye on.
+type issues that surprise both novice and expert programmers alike.
 
 Try to follow along with what's happening here:
 
@@ -254,3 +309,5 @@ seven different types: numbers, strings, booleans, symbols, objects, `null`, and
 - [Destroy All Software — Wat][Wat]
 
 [Wat]: https://www.destroyallsoftware.com/talks/wat
+[whole book]: https://plato.stanford.edu/entries/aristotle-categories/
+[differs]: https://www.diffen.com/difference/Aristotle_vs_Plato
